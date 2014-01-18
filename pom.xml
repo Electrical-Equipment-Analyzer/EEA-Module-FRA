@@ -75,7 +75,7 @@
     </build>
 
     <modules>
-    <module>FileFR</module>
+        <module>module-fra-file-fr</module>
     </modules>
     <properties>
         <netbeans.version>RELEASE74</netbeans.version>
