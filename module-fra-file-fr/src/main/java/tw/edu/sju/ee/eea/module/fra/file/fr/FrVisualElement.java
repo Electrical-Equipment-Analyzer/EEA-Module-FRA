@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.sju.ee.eea.module.fra.file.fr;
+package tw.edu.sju.ee.eea.module.fra.file.fr;
 
-import edu.sju.ee.eea.core.frequency.response.FrequencyResponseFile;
-import edu.sju.ee.eea.core.math.ComplexArray;
-import edu.sju.ee.eea.core.math.MetricPrefixFormat;
+import tw.edu.sju.ee.eea.core.frequency.response.FrequencyResponseFile;
+import tw.edu.sju.ee.eea.core.math.ComplexArray;
+import tw.edu.sju.ee.eea.core.math.MetricPrefixFormat;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.Action;
@@ -36,7 +36,7 @@ import org.openide.windows.TopComponent;
 
 @MultiViewElement.Registration(
         displayName = "#LBL_Fr_VISUAL",
-        iconBase = "edu/sju/ee/eea/module/fra/file/fr/fr.png",
+        iconBase = "tw/edu/sju/ee/eea/module/fra/file/fr/fr.png",
         mimeType = "application/x-plot",
         persistenceType = TopComponent.PERSISTENCE_NEVER,
         preferredID = "FrVisual",

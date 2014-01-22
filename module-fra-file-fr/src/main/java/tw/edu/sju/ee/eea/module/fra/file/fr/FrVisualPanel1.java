@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.sju.ee.eea.module.fra.file.fr;
+package tw.edu.sju.ee.eea.module.fra.file.fr;
 
-import edu.sju.ee.eea.core.frequency.response.FrequencyResponseConfig;
+import tw.edu.sju.ee.eea.core.frequency.response.FrequencyResponseConfig;
 import javax.swing.JPanel;
 import org.openide.util.NbBundle.Messages;
 
@@ -38,7 +38,7 @@ public final class FrVisualPanel1 extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        frequencyResponseConfigPane1 = new edu.sju.ee.eea.ui.swing.pane.FrequencyResponseConfigPane();
+        frequencyResponseConfigPane1 = new tw.edu.sju.ee.eea.ui.swing.pane.FrequencyResponseConfigPane();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -59,6 +59,6 @@ public final class FrVisualPanel1 extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private edu.sju.ee.eea.ui.swing.pane.FrequencyResponseConfigPane frequencyResponseConfigPane1;
+    private tw.edu.sju.ee.eea.ui.swing.pane.FrequencyResponseConfigPane frequencyResponseConfigPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.sju.ee.eea.module.fra.file.fr;
+package tw.edu.sju.ee.eea.module.fra.file.fr;
 
-import edu.sju.ee.eea.core.frequency.response.FrequencyResponseFile;
+import tw.edu.sju.ee.eea.core.frequency.response.FrequencyResponseFile;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -39,7 +39,7 @@ import org.openide.util.NbBundle.Messages;
 )
 @DataObject.Registration(
         mimeType = "application/x-plot",
-        iconBase = "edu/sju/ee/eea/module/fra/file/fr/fr.png",
+        iconBase = "tw/edu/sju/ee/eea/module/fra/file/fr/fr.png",
         displayName = "#LBL_Fr_LOADER",
         position = 300
 )
@@ -202,7 +202,7 @@ public class FrDataObject extends MultiDataObject implements OpenCookie {
 
 //    @MultiViewElement.Registration(
 //        displayName = "#LBL_Fr_EDITOR",
-//        iconBase = "edu/sju/ee/eea/module/fra/file/fr/fr.png",
+//        iconBase = "tw/edu/sju/ee/eea/module/fra/file/fr/fr.png",
 //        mimeType = "application/x-plot",
 //        persistenceType = TopComponent.PERSISTENCE_ONLY_OPENED,
 //        preferredID = "Fr",

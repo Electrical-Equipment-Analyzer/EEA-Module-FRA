@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.sju.ee.eea.module.fra.file.fr;
+package tw.edu.sju.ee.eea.module.fra.file.fr;
 
 import javax.swing.event.ChangeListener;
 import org.openide.WizardDescriptor;

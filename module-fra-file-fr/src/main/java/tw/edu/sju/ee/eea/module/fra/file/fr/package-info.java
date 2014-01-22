@@ -5,6 +5,6 @@
  */
 
 //@TemplateRegistration(folder = "Electrical", content = "FrTemplate.fr", requireProject = false)
-package edu.sju.ee.eea.module.fra.file.fr;
+package tw.edu.sju.ee.eea.module.fra.file.fr;
 
 //import org.netbeans.api.templates.TemplateRegistration;

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.sju.ee.eea.module.fra.file.fr;
+package tw.edu.sju.ee.eea.module.fra.file.fr;
 
-import edu.sju.ee.eea.core.data.DAQData;
-import edu.sju.ee.eea.core.frequency.response.FrequencyResponse;
-import edu.sju.ee.eea.core.frequency.response.FrequencyResponseConfig;
-import edu.sju.ee.eea.core.frequency.response.FrequencyResponseFile;
+import tw.edu.sju.ee.eea.core.data.DAQData;
+import tw.edu.sju.ee.eea.core.frequency.response.FrequencyResponse;
+import tw.edu.sju.ee.eea.core.frequency.response.FrequencyResponseConfig;
+import tw.edu.sju.ee.eea.core.frequency.response.FrequencyResponseFile;
 import java.awt.Component;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -36,7 +36,7 @@ import org.openide.util.NbBundle.Messages;
 @TemplateRegistration(
         folder = "Electrical",
         displayName = "#FrWizardIterator_displayName",
-        iconBase = "edu/sju/ee/eea/module/fra/file/fr/fr.png",
+        iconBase = "tw/edu/sju/ee/eea/module/fra/file/fr/fr.png",
         content = "FrTemplate.fr",
         description = "fr.html",
         requireProject = false
