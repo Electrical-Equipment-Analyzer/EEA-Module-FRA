@@ -97,7 +97,7 @@ import org.openide.util.NbBundle.Messages;
 })
 public class FrDataObject extends MultiDataObject implements OpenCookie {
 
-    FrequencyResponseFile file;
+    private FrequencyResponseFile file;
 
     public FrDataObject(FileObject pf, MultiFileLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
@@ -127,6 +127,10 @@ public class FrDataObject extends MultiDataObject implements OpenCookie {
                 Exceptions.printStackTrace(ex);
             }
         }
+    }
+    
+    public FrequencyResponseFile getFile() {
+        return this.file;
     }
 
     @Override

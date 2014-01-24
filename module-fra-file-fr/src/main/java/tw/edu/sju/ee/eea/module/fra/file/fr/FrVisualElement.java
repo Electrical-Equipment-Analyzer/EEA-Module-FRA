@@ -57,7 +57,7 @@ public final class FrVisualElement extends JPanel implements MultiViewElement {
     public FrVisualElement(Lookup lkp) {
         obj = lkp.lookup(FrDataObject.class);
         assert obj != null;
-        data = obj.file;
+        data = obj.getFile();
         initChart();
         initComponents();
     }
