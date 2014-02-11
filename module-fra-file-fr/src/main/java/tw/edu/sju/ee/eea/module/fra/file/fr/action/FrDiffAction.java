@@ -32,6 +32,7 @@ import org.openide.util.NbBundle.Messages;
 import org.openide.windows.IOColorLines;
 import org.openide.windows.IOProvider;
 import org.openide.windows.InputOutput;
+import org.openide.windows.TopComponent;
 import tw.edu.sju.ee.eea.module.fra.file.fr.FrDataObject;
 
 @ActionID(
@@ -72,6 +73,9 @@ public final class FrDiffAction implements ActionListener {
                 IOColorLines.println(io, frDataObject.getFile().getConfig().toString(), Color.BLACK);
 
             }
+            TopComponent tc = new FrDiffTopComponent();
+            tc.open();
+            tc.requestActive();
         } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
         }
