@@ -5,28 +5,11 @@
  */
 package tw.edu.sju.ee.eea.module.fra.file.fr;
 
-import tw.edu.sju.ee.eea.core.frequency.response.FrequencyResponseFile;
-import tw.edu.sju.ee.eea.core.math.ComplexArray;
-import tw.edu.sju.ee.eea.core.math.MetricPrefixFormat;
-import java.awt.Color;
-import java.awt.Font;
 import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
-import org.apache.commons.math3.complex.Complex;
-import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.LogAxis;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.StandardXYItemRenderer;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
 import org.netbeans.core.spi.multiview.CloseOperationState;
 import org.netbeans.core.spi.multiview.MultiViewElement;
 import org.netbeans.core.spi.multiview.MultiViewElementCallback;
@@ -34,6 +17,7 @@ import org.openide.awt.UndoRedo;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle.Messages;
 import org.openide.windows.TopComponent;
+import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlotChart;
 
 @MultiViewElement.Registration(
         displayName = "#LBL_Fr_VISUAL",
@@ -50,83 +34,13 @@ public final class FrVisualElement extends JPanel implements MultiViewElement {
     private JToolBar toolbar = new JToolBar();
     private transient MultiViewElementCallback callback;
 
-    private FrequencyResponseFile data;
-    private JFreeChart chart;
     private ChartPanel chartPanel;
 
     public FrVisualElement(Lookup lkp) {
         obj = lkp.lookup(FrDataObject.class);
         assert obj != null;
-        data = obj.getFile();
-        initChart();
+        chartPanel = new BodePlotChart(obj.getFile().getGain());
         initComponents();
-    }
-
-    private void initChart() {
-        Complex[] H = new Complex[data.getConfig().getLength()];
-        for (int i = 0; i < H.length; i++) {
-            H[i] = data.getOut()[i].divide(data.getIn()[i]);
-        }
-        Font font = new Font(Font.DIALOG, Font.BOLD, 14);
-        Color color1 = Color.RED;
-        Color color2 = Color.BLUE;
-
-        chart = ChartFactory.createXYLineChart("Bode Plot", null, "Magnitude(dB)", createXYSeriesCollection("Magnitude", data, toBode(ComplexArray.getAbsolute(H))), PlotOrientation.VERTICAL, true, true, false);
-        XYPlot plot = chart.getXYPlot();
-
-        LogAxis domainAxis = new LogAxis("Frequency");
-        domainAxis.setLabelFont(font);
-        domainAxis.setNumberFormatOverride(new MetricPrefixFormat("0.###"));
-        plot.setDomainAxis(domainAxis);
-
-        ValueAxis axis1 = plot.getRangeAxis();
-        axis1.setLabelFont(font);
-        axis1.setLabelPaint(color1);
-        axis1.setTickLabelPaint(color1);
-
-        NumberAxis axis2 = new NumberAxis("Phase(Degrees)");
-        axis2.setLabelFont(font);
-        axis2.setLabelPaint(color2);
-        axis2.setTickLabelPaint(color2);
-        plot.setRangeAxis(1, axis2);
-
-        plot.setDataset(1, createXYSeriesCollection("Phase", data, toDegree(ComplexArray.getArgument(H))));
-        plot.mapDatasetToRangeAxis(1, 1);
-        XYItemRenderer renderer2 = new StandardXYItemRenderer();
-        renderer2.setSeriesPaint(0, color2);
-        plot.setRenderer(1, renderer2);
-
-        chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new java.awt.Dimension(600, 270));
-        chartPanel.setDomainZoomable(true);
-        chartPanel.setRangeZoomable(true);
-    }
-
-    private static XYSeriesCollection createXYSeriesCollection(String name, FrequencyResponseFile file, double[] data) {
-        XYSeries series1 = new XYSeries(name);
-        for (int i = 0; i < file.getConfig().getLength(); i++) {
-            System.out.println(file.getConfig().getFrequency(i));
-            series1.add(file.getConfig().getFrequency(i), data[i]);
-        }
-        XYSeriesCollection collection = new XYSeriesCollection();
-        collection.addSeries(series1);
-        return collection;
-    }
-
-    private double[] toBode(double[] data) {
-        double bode[] = new double[data.length];
-        for (int i = 0; i < data.length; i++) {
-            bode[i] = 20 * Math.log(data[i]);
-        }
-        return bode;
-    }
-
-    private double[] toDegree(double[] data) {
-        double degree[] = new double[data.length];
-        for (int i = 0; i < data.length; i++) {
-            degree[i] = Math.toDegrees(data[i]);
-        }
-        return degree;
     }
 
     @Override

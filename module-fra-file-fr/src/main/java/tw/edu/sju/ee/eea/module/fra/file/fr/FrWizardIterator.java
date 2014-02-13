@@ -5,7 +5,7 @@
  */
 package tw.edu.sju.ee.eea.module.fra.file.fr;
 
-import tw.edu.sju.ee.eea.core.data.DAQData;
+import tw.edu.sju.ee.eea.core.data.EEAFile;
 import tw.edu.sju.ee.eea.core.frequency.response.FrequencyResponse;
 import tw.edu.sju.ee.eea.core.frequency.response.FrequencyResponseConfig;
 import tw.edu.sju.ee.eea.core.frequency.response.FrequencyResponseFile;
@@ -30,7 +30,10 @@ import org.openide.cookies.OpenCookie;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
+import org.openide.util.Exceptions;
 import org.openide.util.NbBundle.Messages;
+import tw.edu.sju.ee.eea.jni.fgen.NIFgenException;
+import tw.edu.sju.ee.eea.jni.scope.NIScopeException;
 
 // TODO define position attribute
 @TemplateRegistration(
@@ -99,16 +102,22 @@ public final class FrWizardIterator implements WizardDescriptor.InstantiatingIte
         FileObject createdFile = dobj.getPrimaryFile();
         FrequencyResponseConfig conf = (FrequencyResponseConfig) wizard.getProperty("conf");
         System.out.println(conf);
-        FrequencyResponseFile file = new FrequencyResponse(conf).process();
+        FrequencyResponseFile file = null;
+        try {
+            file = new FrequencyResponse(conf).process();
+        } catch (NIFgenException | NIScopeException ex) {
+            Exceptions.printStackTrace(ex);
+            throw new IOException(ex);
+        }
         try {
             ObjectOutputStream oo = new ObjectOutputStream(createdFile.getOutputStream());
             oo.writeObject(file);
             oo.flush();
             oo.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DAQData.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EEAFile.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(DAQData.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EEAFile.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         OpenCookie open = (OpenCookie) dobj.getCookie(OpenCookie.class);
