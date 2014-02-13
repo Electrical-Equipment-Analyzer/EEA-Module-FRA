@@ -17,7 +17,7 @@ import org.openide.awt.UndoRedo;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle.Messages;
 import org.openide.windows.TopComponent;
-import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlotChart;
+import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlot;
 
 @MultiViewElement.Registration(
         displayName = "#LBL_Fr_VISUAL",
@@ -39,7 +39,7 @@ public final class FrVisualElement extends JPanel implements MultiViewElement {
     public FrVisualElement(Lookup lkp) {
         obj = lkp.lookup(FrDataObject.class);
         assert obj != null;
-        chartPanel = new BodePlotChart(obj.getFile().getGain());
+        chartPanel = BodePlot.createMagnitudePhase(obj.getFile().getGain());
         initComponents();
     }
 
