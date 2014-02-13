@@ -160,14 +160,14 @@ public class FrDataObject extends MultiDataObject implements OpenCookie {
 
                 @Override
                 public String getValue() throws IllegalAccessException, InvocationTargetException {
-                    return file.getConfig().getGenerateChannel();
+                    return file.getConfig().getGenerateDevice();
                 }
             });
             set.put(new PropertySupport.ReadOnly("responseChannel", String.class, "responseChannel", "responseChannel") {
 
                 @Override
                 public String getValue() throws IllegalAccessException, InvocationTargetException {
-                    return file.getConfig().getResponseChannel();
+                    return file.getConfig().getResponseDevice();
                 }
             });
             set.put(new PropertySupport.ReadOnly("voltage", Double.class, "voltage", "voltage") {
