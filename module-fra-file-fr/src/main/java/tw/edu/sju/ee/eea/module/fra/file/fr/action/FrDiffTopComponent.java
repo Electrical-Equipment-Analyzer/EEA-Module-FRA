@@ -17,19 +17,22 @@
  */
 package tw.edu.sju.ee.eea.module.fra.file.fr.action;
 
+import org.jfree.chart.ChartPanel;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
+import tw.edu.sju.ee.eea.module.fra.file.fr.FrDataObject;
+import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlot;
 
 /**
  * Top component which displays something.
  */
-@ConvertAsProperties(
-        dtd = "-//tw.edu.sju.ee.eea.module.fra.file.fr.action//FrDiff//EN",
-        autostore = false
-)
+//@ConvertAsProperties(
+//        dtd = "-//tw.edu.sju.ee.eea.module.fra.file.fr.action//FrDiff//EN",
+//        autostore = false
+//)
 @TopComponent.Description(
         preferredID = "FrDiffTopComponent",
         //iconBase="SET/PATH/TO/ICON/HERE", 
@@ -38,21 +41,23 @@ import org.openide.util.NbBundle.Messages;
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
 @ActionID(category = "Window", id = "tw.edu.sju.ee.eea.module.fra.file.fr.action.FrDiffTopComponent")
 @ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_FrDiffTopComponent",
-        preferredID = "FrDiffTopComponent"
-)
+//@TopComponent.OpenActionRegistration(
+//        displayName = "#CTL_FrDiffTopComponent",
+//        preferredID = "FrDiffTopComponent"
+//)
 @Messages({
-    "CTL_FrDiffTopComponent=Diff Window",
-    "HINT_FrDiffTopComponent=This is a Diff window"
+    "CTL_FrDiffTopComponent=Diff Frequency Response",
+    "HINT_FrDiffTopComponent=Frequency Response File Diff window"
 })
 public final class FrDiffTopComponent extends TopComponent {
 
-    public FrDiffTopComponent() {
-        initComponents();
-        setName(Bundle.CTL_FrDiffTopComponent());
-        setToolTipText(Bundle.HINT_FrDiffTopComponent());
+    private ChartPanel chartPanel;
 
+    public FrDiffTopComponent(FrDataObject dataObjectA, FrDataObject dataObjectB) {
+        chartPanel = BodePlot.createDiffMagnitude(dataObjectA.getFile().getGain(), dataObjectB.getFile().getGain());
+        initComponents();
+        setName(Bundle.CTL_FrDiffTopComponent() + " - " + dataObjectA.getName() + ":" + dataObjectB.getName());
+        setToolTipText(Bundle.HINT_FrDiffTopComponent());
     }
 
     /**
@@ -63,19 +68,41 @@ public final class FrDiffTopComponent extends TopComponent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = chartPanel;
+
+        setPreferredSize(new java.awt.Dimension(640, 480));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 620, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
     @Override
     public void componentOpened() {
