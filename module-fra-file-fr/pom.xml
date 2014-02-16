@@ -9,7 +9,7 @@
 
     <groupId>tw.edu.sju.ee.eea.module</groupId>
     <artifactId>module-fra-file-fr</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <packaging>nbm</packaging>
 
     <name>module-fra-file-fr</name>
