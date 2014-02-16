@@ -18,6 +18,7 @@ import org.openide.util.Lookup;
 import org.openide.util.NbBundle.Messages;
 import org.openide.windows.TopComponent;
 import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlot;
+import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlotPanel;
 
 @MultiViewElement.Registration(
         displayName = "#LBL_Fr_VISUAL",
@@ -27,7 +28,10 @@ import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlot;
         preferredID = "FrVisual",
         position = 2000
 )
-@Messages("LBL_Fr_VISUAL=Bode Plot")
+@Messages({
+    "LBL_Fr_VISUAL=Chart",
+    "LBL_Fr_VISUAL_chart.title=Frequency Response"
+})
 public final class FrVisualElement extends JPanel implements MultiViewElement {
 
     private FrDataObject obj;
@@ -39,7 +43,9 @@ public final class FrVisualElement extends JPanel implements MultiViewElement {
     public FrVisualElement(Lookup lkp) {
         obj = lkp.lookup(FrDataObject.class);
         assert obj != null;
-        chartPanel = BodePlot.createMagnitudePhase(obj.getFile().getGain());
+        BodePlot bodePlot = new BodePlot(Bundle.LBL_Fr_VISUAL_chart_title());
+        bodePlot.setData(obj.getFile().getGain(), 0);
+        chartPanel = new ChartPanel(bodePlot);
         initComponents();
     }
 

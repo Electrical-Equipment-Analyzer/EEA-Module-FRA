@@ -24,7 +24,7 @@ import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import tw.edu.sju.ee.eea.module.fra.file.fr.FrDataObject;
-import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlot;
+import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlotPanel;
 
 /**
  * Top component which displays something.
@@ -54,7 +54,7 @@ public final class FrDiffTopComponent extends TopComponent {
     private ChartPanel chartPanel;
 
     public FrDiffTopComponent(FrDataObject dataObjectA, FrDataObject dataObjectB) {
-        chartPanel = BodePlot.createDiffMagnitude(dataObjectA.getFile().getGain(), dataObjectB.getFile().getGain());
+        chartPanel = BodePlotPanel.createDiffMagnitude(dataObjectA.getFile().getGain(), dataObjectB.getFile().getGain());
         initComponents();
         setName(Bundle.CTL_FrDiffTopComponent() + " - " + dataObjectA.getName() + ":" + dataObjectB.getName());
         setToolTipText(Bundle.HINT_FrDiffTopComponent());
