@@ -44,7 +44,7 @@
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblGenerateChannel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblResponseChanel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblResponseChannel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblStopFrequrncy" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblRatePerHz" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -76,7 +76,7 @@
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="lblResponseDevice" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="cmbResponseDevice" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblResponseChanel" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblResponseChannel" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="txtResponseChanel" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -136,10 +136,10 @@
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="FrVisualPanel1_generateDeviceLabel"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblResponseChanel">
+    <Component class="javax.swing.JLabel" name="lblResponseChannel">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="tw/edu/sju/ee/eea/module/fra/file/fr/Bundle.properties" key="FrConfigVisualPanel.lblResponseChanel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="tw/edu/sju/ee/eea/module/fra/file/fr/Bundle.properties" key="FrConfigVisualPanel.lblResponseChannel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>

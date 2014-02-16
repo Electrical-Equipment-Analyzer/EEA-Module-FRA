@@ -162,7 +162,7 @@ public class FrDataObject extends MultiDataObject implements OpenCookie {
             String name[] = new String[]{"GenerateDevice", "GenerateChannel", "ResponseDevice", "ResponseChannel",
                 "Voltage", "StartFrequency", "StopFrequrncy", "Points", "RatePerHz", "Description"};
             for (int i = 0; i < name.length; i++) {
-                String displayName = NbBundle.getMessage(FrequencyResponseConfig.class, "LBL_" + name[i]);
+                String displayName = NbBundle.getMessage(FrConfigVisualPanel.class, "FrConfigVisualPanel.lbl" + name[i] + ".text");
                 String description = NbBundle.getMessage(FrequencyResponseConfig.class, "DCT_" + name[i]);
                 try {
                     final Method method = FrequencyResponseConfig.class.getMethod("get" + name[i]);

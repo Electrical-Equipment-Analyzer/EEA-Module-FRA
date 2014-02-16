@@ -47,7 +47,7 @@ public final class FrConfigVisualPanel extends JPanel {
         lblGenerateDevice = new javax.swing.JLabel();
         lblGenerateChannel = new javax.swing.JLabel();
         lblResponseDevice = new javax.swing.JLabel();
-        lblResponseChanel = new javax.swing.JLabel();
+        lblResponseChannel = new javax.swing.JLabel();
         lblVoltage = new javax.swing.JLabel();
         lblStartFrequency = new javax.swing.JLabel();
         lblStopFrequrncy = new javax.swing.JLabel();
@@ -74,7 +74,7 @@ public final class FrConfigVisualPanel extends JPanel {
 
         org.openide.awt.Mnemonics.setLocalizedText(lblResponseDevice, org.openide.util.NbBundle.getMessage(FrConfigVisualPanel.class, "FrConfigVisualPanel.lblResponseDevice.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(lblResponseChanel, org.openide.util.NbBundle.getMessage(FrConfigVisualPanel.class, "FrConfigVisualPanel.lblResponseChanel.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(lblResponseChannel, org.openide.util.NbBundle.getMessage(FrConfigVisualPanel.class, "FrConfigVisualPanel.lblResponseChannel.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(lblVoltage, org.openide.util.NbBundle.getMessage(FrConfigVisualPanel.class, "FrConfigVisualPanel.lblVoltage.text")); // NOI18N
 
@@ -145,7 +145,7 @@ public final class FrConfigVisualPanel extends JPanel {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblGenerateChannel)
-                            .addComponent(lblResponseChanel)
+                            .addComponent(lblResponseChannel)
                             .addComponent(lblStopFrequrncy)
                             .addComponent(lblRatePerHz))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -170,7 +170,7 @@ public final class FrConfigVisualPanel extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblResponseDevice)
                     .addComponent(cmbResponseDevice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblResponseChanel)
+                    .addComponent(lblResponseChannel)
                     .addComponent(txtResponseChanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -204,7 +204,7 @@ public final class FrConfigVisualPanel extends JPanel {
     private javax.swing.JLabel lblGenerateDevice;
     private javax.swing.JLabel lblPoints;
     private javax.swing.JLabel lblRatePerHz;
-    private javax.swing.JLabel lblResponseChanel;
+    private javax.swing.JLabel lblResponseChannel;
     private javax.swing.JLabel lblResponseDevice;
     private javax.swing.JLabel lblStartFrequency;
     private javax.swing.JLabel lblStopFrequrncy;
