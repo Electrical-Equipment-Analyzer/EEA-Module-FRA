@@ -22,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.event.ChangeListener;
+import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.project.SourceGroup;
 import org.netbeans.api.templates.TemplateRegistration;
 import org.netbeans.spi.project.ui.templates.support.Templates;
@@ -45,7 +46,7 @@ import tw.edu.sju.ee.eea.jni.scope.NIScopeException;
         requireProject = false
 )
 @Messages("FrWizardIterator_displayName=Frequency Response Bode Plot")
-public final class FrWizardIterator implements WizardDescriptor.InstantiatingIterator<WizardDescriptor> {
+public final class FrWizardIterator implements WizardDescriptor.ProgressInstantiatingIterator<WizardDescriptor> {
 
     private int index;
 
@@ -81,6 +82,11 @@ public final class FrWizardIterator implements WizardDescriptor.InstantiatingIte
 
     @Override
     public Set<?> instantiate() throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Set instantiate(final ProgressHandle handle) throws IOException {
         // TODO return set of FileObject (or DataObject) you have created
         //Get the template and convert it:
         FileObject template = Templates.getTemplate(wizard);
@@ -104,7 +110,7 @@ public final class FrWizardIterator implements WizardDescriptor.InstantiatingIte
         System.out.println(conf);
         FrequencyResponseFile file = null;
         try {
-            file = new FrequencyResponse(conf).process();
+            file = new FrequencyResponse(conf).process(handle);
         } catch (NIFgenException | NIScopeException ex) {
             Exceptions.printStackTrace(ex);
             throw new IOException(ex);
