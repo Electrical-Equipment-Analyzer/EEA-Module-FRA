@@ -5,7 +5,12 @@
  */
 package tw.edu.sju.ee.eea.module.fra.file.fr;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Action;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
@@ -18,7 +23,6 @@ import org.openide.util.Lookup;
 import org.openide.util.NbBundle.Messages;
 import org.openide.windows.TopComponent;
 import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlot;
-import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlotPanel;
 
 @MultiViewElement.Registration(
         displayName = "#LBL_Fr_VISUAL",
@@ -34,18 +38,48 @@ import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlotPanel;
 })
 public final class FrVisualElement extends JPanel implements MultiViewElement {
 
+    @Messages({
+        "CMB_show_tip=Select Shows",
+        "CMB_show_both=Both",
+        "CMB_show_magnitude=Magnitude",
+        "CMB_show_phase=Phase"
+    })
+    private class FrVisualToolBar extends JToolBar {
+
+        private JComboBox cmbShowData = new JComboBox();
+
+        public FrVisualToolBar() {
+            cmbShowData.setToolTipText(Bundle.CMB_show_tip());
+            cmbShowData.setModel(new DefaultComboBoxModel(
+                    new String[]{Bundle.CMB_show_both(), Bundle.CMB_show_magnitude(), Bundle.CMB_show_phase()}));
+            cmbShowData.setMaximumSize(new Dimension(80, 21));
+            cmbShowData.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    ((ChartPanel) chartPanel).setChart(createChart());
+                }
+            });
+            this.setFloatable(false);
+            this.addSeparator();
+            this.add(cmbShowData);
+        }
+
+        private BodePlot createChart() {
+            BodePlot bodePlot = new BodePlot(Bundle.LBL_Fr_VISUAL_chart_title());
+            bodePlot.setData(obj.getFile().getGain(), cmbShowData.getSelectedIndex());
+            return bodePlot;
+        }
+    }
+
     private FrDataObject obj;
-    private JToolBar toolbar = new JToolBar();
+    private FrVisualToolBar toolbar = new FrVisualToolBar();
     private transient MultiViewElementCallback callback;
 
-    private ChartPanel chartPanel;
-
+//    private ChartPanel chartPanel;
     public FrVisualElement(Lookup lkp) {
         obj = lkp.lookup(FrDataObject.class);
         assert obj != null;
-        BodePlot bodePlot = new BodePlot(Bundle.LBL_Fr_VISUAL_chart_title());
-        bodePlot.setData(obj.getFile().getGain(), 0);
-        chartPanel = new ChartPanel(bodePlot);
         initComponents();
     }
 
@@ -62,18 +96,18 @@ public final class FrVisualElement extends JPanel implements MultiViewElement {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = chartPanel;
+        chartPanel = new ChartPanel(toolbar.createChart());
 
         setPreferredSize(new java.awt.Dimension(640, 480));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout chartPanelLayout = new javax.swing.GroupLayout(chartPanel);
+        chartPanel.setLayout(chartPanelLayout);
+        chartPanelLayout.setHorizontalGroup(
+            chartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 620, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        chartPanelLayout.setVerticalGroup(
+            chartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 460, Short.MAX_VALUE)
         );
 
@@ -83,21 +117,21 @@ public final class FrVisualElement extends JPanel implements MultiViewElement {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(chartPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(chartPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel chartPanel;
     // End of variables declaration//GEN-END:variables
 
     @Override
