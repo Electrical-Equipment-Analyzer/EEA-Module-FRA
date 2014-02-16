@@ -15,16 +15,16 @@ public class FrWizardPanel1 implements WizardDescriptor.Panel<WizardDescriptor> 
      * The visual component that displays this panel. If you need to access the
      * component from this class, just use getComponent().
      */
-    private FrVisualPanel1 component;
+    private FrConfigVisualPanel component;
 
     // Get the visual component for the panel. In this template, the component
     // is kept separate. This can be more efficient: if the wizard is created
     // but never displayed, or not all panels are displayed, it is better to
     // create only those which really need to be visible.
     @Override
-    public FrVisualPanel1 getComponent() {
+    public FrConfigVisualPanel getComponent() {
         if (component == null) {
-            component = new FrVisualPanel1();
+            component = new FrConfigVisualPanel();
         }
         return component;
     }
