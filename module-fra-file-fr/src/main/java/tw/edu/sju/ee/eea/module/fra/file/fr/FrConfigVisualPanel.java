@@ -25,12 +25,15 @@ public final class FrConfigVisualPanel extends JPanel {
     public String getName() {
         return Bundle.FrVisualPanel1_displayName();
     }
-    
+
     public FrequencyResponseConfig getConfig() {
         return new FrequencyResponseConfig(
-                cmbGenerateDevice.getSelectedItem().toString(), cmbResponseDevice.getSelectedItem().toString(), Double.parseDouble(txtVoltage.getText()),
+                cmbGenerateDevice.getSelectedItem().toString(), txtGenerateChannel.getText(),
+                cmbResponseDevice.getSelectedItem().toString(), txtResponseChanel.getText(),
+                Double.parseDouble(txtVoltage.getText()),
                 Double.parseDouble(txtStartFrequency.getText()), Double.parseDouble(txtStopFrequency.getText()),
-                Integer.parseInt(txtPoints.getText()), Integer.parseInt(txtRatePerHz.getText()));
+                Integer.parseInt(txtPoints.getText()), Integer.parseInt(txtRatePerHz.getText()),
+                txaDescription.getText());
     }
 
     /**
