@@ -60,8 +60,8 @@ public final class FrDiffAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ev) {
-        if (context.size() != 2) {
-            JOptionPane.showMessageDialog(null, "Must Select 2 File", "Error Selected File", JOptionPane.ERROR_MESSAGE);
+        if (context.size() < 2) {
+            JOptionPane.showMessageDialog(null, "Must Select More 2 File", "Error Selected File", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String title = Bundle.CTL_FrDiffAction();
@@ -71,10 +71,10 @@ public final class FrDiffAction implements ActionListener {
             IOColorLines.println(io, "Diff", Color.BLACK);
             IOColorLines.println(io, "Sellected file : " + context.size(), Color.BLACK);
 
-            for (FrDataObject frDataObject : context) {
-                IOColorLines.println(io, frDataObject.getName(), Color.BLACK);
-                IOColorLines.println(io, frDataObject.getFile().getConfig().toString(), Color.BLACK);
-            }
+//            for (FrDataObject frDataObject : context) {
+//                IOColorLines.println(io, frDataObject.getName(), Color.BLACK);
+//                IOColorLines.println(io, frDataObject.getFile().getConfig().toString(), Color.BLACK);
+//            }
 
             FRAChina fraChinaX = new FRAChina(ComplexArray.getAbsolute(context.get(0).getFile().getGain().values().toArray(new Complex[0])));
             FRAChina fraChinaY = new FRAChina(ComplexArray.getAbsolute(context.get(1).getFile().getGain().values().toArray(new Complex[0])));
@@ -86,7 +86,7 @@ public final class FrDiffAction implements ActionListener {
             IOColorLines.println(io, "LRxy : " + FRAChina.autocovariance(fraChinaX, fraChinaY), Color.BLACK);
             IOColorLines.println(io, "Rxy : " + FRAChina.coefficient(fraChinaX, fraChinaY), Color.BLACK);
 
-            TopComponent tc = new FrDiffTopComponent(context.get(0), context.get(1));
+            TopComponent tc = new FrDiffTopComponent(context);
             tc.open();
             tc.requestActive();
         } catch (IOException ex) {

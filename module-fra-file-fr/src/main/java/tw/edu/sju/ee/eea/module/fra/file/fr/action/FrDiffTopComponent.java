@@ -17,14 +17,14 @@
  */
 package tw.edu.sju.ee.eea.module.fra.file.fr.action;
 
+import java.util.List;
 import org.jfree.chart.ChartPanel;
-import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import tw.edu.sju.ee.eea.module.fra.file.fr.FrDataObject;
-import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlotPanel;
+import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlot;
 
 /**
  * Top component which displays something.
@@ -47,17 +47,26 @@ import tw.edu.sju.ee.eea.ui.workspace.plot.BodePlotPanel;
 //)
 @Messages({
     "CTL_FrDiffTopComponent=Diff Frequency Response",
-    "HINT_FrDiffTopComponent=Frequency Response File Diff window"
+    "HINT_FrDiffTopComponent=Frequency Response Files",
+    "TITLE_FrDiffTopComponent=Frequency Response Analysis",
+    "LBL_FrDiffTopComponent=Magnitude(dB)"
 })
 public final class FrDiffTopComponent extends TopComponent {
 
-    private ChartPanel chartPanel;
+    private BodePlot bodePlot;
 
-    public FrDiffTopComponent(FrDataObject dataObjectA, FrDataObject dataObjectB) {
-        chartPanel = BodePlotPanel.createDiffMagnitude(dataObjectA.getFile().getGain(), dataObjectB.getFile().getGain());
+    public FrDiffTopComponent(List<FrDataObject> context) {
+        bodePlot = new BodePlot(Bundle.TITLE_FrDiffTopComponent());
+        bodePlot.createAxisY(0, Bundle.LBL_FrDiffTopComponent());
+        StringBuilder sb = null;
+        for (int i = 0; i < context.size(); i++) {
+            sb = sb != null ? sb.append(", ") : new StringBuilder();
+            sb.append(context.get(i).getName());
+            bodePlot.addData(i, 0, BodePlot.createXYSeriesCollection(context.get(i).getName(), context.get(i).getFile().getGain(), true));
+        }
         initComponents();
-        setName(Bundle.CTL_FrDiffTopComponent() + " - " + dataObjectA.getName() + ":" + dataObjectB.getName());
-        setToolTipText(Bundle.HINT_FrDiffTopComponent());
+        setName(Bundle.CTL_FrDiffTopComponent());
+        setToolTipText(Bundle.HINT_FrDiffTopComponent() + " : " + sb);
     }
 
     /**
@@ -68,7 +77,7 @@ public final class FrDiffTopComponent extends TopComponent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = chartPanel;
+        jPanel1 = new ChartPanel(bodePlot);
 
         setPreferredSize(new java.awt.Dimension(640, 480));
 
