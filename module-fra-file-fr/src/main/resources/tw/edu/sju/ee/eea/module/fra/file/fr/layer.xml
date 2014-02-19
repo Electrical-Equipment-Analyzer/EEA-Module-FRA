@@ -4,6 +4,18 @@
     <folder name="Menu">
         <folder name="Analyzers">
             <attr intvalue="300" name="position"/>
+            <folder name="Frequency Response Analysis">
+                <attr intvalue="300" name="position"/>
+            
+            </folder>
         </folder>
+        <file name="BuildProject_hidden"/>
+        <file name="RunProject_hidden"/>
+    </folder>
+    <folder name="Templates">
+        <file name="Other_hidden"/>
+    </folder>
+    <folder name="Toolbars">
+        <file name="Build_hidden"/>
     </folder>
 </filesystem>

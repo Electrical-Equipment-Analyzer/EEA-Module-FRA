@@ -34,37 +34,38 @@ import org.openide.windows.IOColorLines;
 import org.openide.windows.IOProvider;
 import org.openide.windows.InputOutput;
 import org.openide.windows.TopComponent;
+import org.openide.windows.WindowManager;
 import tw.edu.sju.ee.eea.core.math.ComplexArray;
 import tw.edu.sju.ee.eea.core.standard.FRAChina;
 import tw.edu.sju.ee.eea.module.fra.file.fr.FrDataObject;
 
 @ActionID(
         category = "Analyzer",
-        id = "tw.edu.sju.ee.eea.module.fra.file.fr.action.FrDiffAction"
+        id = "tw.edu.sju.ee.eea.module.fra.file.fr.action.FrDiffDLAction"
 )
 @ActionRegistration(
-        displayName = "#CTL_FrDiffAction"
+        displayName = "#CTL_FrDiffDLAction"
 )
 @ActionReferences({
-    @ActionReference(path = "Menu/Analyzers", position = 3333, separatorAfter = 3383),
-    @ActionReference(path = "Loaders/application/x-plot/Actions", position = 1050, separatorAfter = 1075)
+    @ActionReference(path = "Menu/Analyzers/Frequency Response Analysis", position = 110, separatorAfter = 190)
 })
-@Messages("CTL_FrDiffAction=Diff")
-public final class FrDiffAction implements ActionListener {
+@Messages("CTL_FrDiffDLAction=DL/911 (China)")
+public final class FrDiffDLAction implements ActionListener {
 
     private final List<FrDataObject> context;
 
-    public FrDiffAction(List<FrDataObject> context) {
+    public FrDiffDLAction(List<FrDataObject> context) {
         this.context = context;
     }
 
     @Override
     public void actionPerformed(ActionEvent ev) {
         if (context.size() < 2) {
-            JOptionPane.showMessageDialog(null, "Must Select More 2 File", "Error Selected File", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(WindowManager.getDefault().getMainWindow(),
+                    "Must Select More 2 File", "Error Selected File", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String title = Bundle.CTL_FrDiffAction();
+        String title = Bundle.CTL_FrDiffDLAction();
         title += "(" + context.get(0).getName() + " - " + context.get(1).getName() + ")";
         InputOutput io = IOProvider.getDefault().getIO(title, false);
         try {
@@ -75,13 +76,12 @@ public final class FrDiffAction implements ActionListener {
 //                IOColorLines.println(io, frDataObject.getName(), Color.BLACK);
 //                IOColorLines.println(io, frDataObject.getFile().getConfig().toString(), Color.BLACK);
 //            }
-
             FRAChina fraChinaX = new FRAChina(ComplexArray.getAbsolute(context.get(0).getFile().getGain().values().toArray(new Complex[0])));
             FRAChina fraChinaY = new FRAChina(ComplexArray.getAbsolute(context.get(1).getFile().getGain().values().toArray(new Complex[0])));
 
             IOColorLines.println(io, "Dx : " + fraChinaX.variance(), Color.BLACK);
             IOColorLines.println(io, "Dy : " + fraChinaY.variance(), Color.BLACK);
-            
+
             IOColorLines.println(io, "Cxy : " + FRAChina.covariance(fraChinaX, fraChinaY), Color.BLACK);
             IOColorLines.println(io, "LRxy : " + FRAChina.autocovariance(fraChinaX, fraChinaY), Color.BLACK);
             IOColorLines.println(io, "Rxy : " + FRAChina.coefficient(fraChinaX, fraChinaY), Color.BLACK);

@@ -38,7 +38,8 @@ import tw.edu.sju.ee.eea.core.frequency.response.FrequencyResponseConfig;
 @MIMEResolver.ExtensionRegistration(
         displayName = "#LBL_Fr_LOADER",
         mimeType = "application/x-plot",
-        extension = {"fr"}
+        extension = {"fr"},
+        position = 10
 )
 @DataObject.Registration(
         mimeType = "application/x-plot",
