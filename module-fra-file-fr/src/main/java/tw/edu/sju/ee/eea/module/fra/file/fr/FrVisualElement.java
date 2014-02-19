@@ -65,9 +65,15 @@ public final class FrVisualElement extends JPanel implements MultiViewElement {
             this.add(cmbShowData);
         }
 
-        private BodePlot createChart() {
+        public BodePlot createChart() {
             BodePlot bodePlot = new BodePlot(Bundle.LBL_Fr_VISUAL_chart_title());
-            bodePlot.setData(obj.getFile().getGain(), cmbShowData.getSelectedIndex());
+            int i = 0;
+            if (cmbShowData.getSelectedIndex() != 2) {
+                bodePlot.addData(i++, "Magnitude(dB)", BodePlot.createXYSeriesCollection("Magnitude", obj.getFile().getGain(), true));
+            }
+            if (cmbShowData.getSelectedIndex() != 1) {
+                bodePlot.addData(i++, "Phase(Degrees)", BodePlot.createXYSeriesCollection("Phase", obj.getFile().getGain(), false));
+            }
             return bodePlot;
         }
     }
