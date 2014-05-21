@@ -4,10 +4,10 @@
 
     <groupId>tw.edu.sju.ee.eea.module</groupId>
     <artifactId>module-fra-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>sju-daq.module-fra-parent</name>
+    <name>EEA Module FRA</name>
 
     <parent>
         <groupId>tw.edu.sju.ee.eea</groupId>
@@ -81,11 +81,11 @@
     </build>
 
     <modules>
-        <module>module-fra-file-fr</module>
+        <module>module-fra-file</module>
     </modules>
     <properties>
         <netbeans.version>RELEASE74</netbeans.version>
-        <brandingToken>sjudaqmodulefra</brandingToken>
+        <brandingToken>eeafra</brandingToken>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 </project>

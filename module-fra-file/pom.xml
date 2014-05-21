@@ -4,15 +4,15 @@
     <parent>
         <groupId>tw.edu.sju.ee.eea.module</groupId>
         <artifactId>module-fra-parent</artifactId>
-        <version>1.0.1</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>tw.edu.sju.ee.eea.module</groupId>
-    <artifactId>module-fra-file-fr</artifactId>
-    <version>1.0.1</version>
+    <groupId>tw.edu.sju.ee.eea.module.fra</groupId>
+    <artifactId>module-fra-file</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>nbm</packaging>
 
-    <name>module-fra-file-fr</name>
+    <name>EEA Module FRA File</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,9 +36,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>tw.edu.sju.ee.eea.commons</groupId>
-            <artifactId>commons-ui</artifactId>
-            <version>1.0.1</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
@@ -98,19 +99,19 @@
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-modules-projectapi</artifactId>
-            <version>RELEASE74</version>
+            <version>${netbeans.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-modules-projectuiapi</artifactId>
-            <version>RELEASE74</version>
+            <version>${netbeans.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-io</artifactId>
-            <version>RELEASE74</version>
+            <version>${netbeans.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -121,19 +122,18 @@
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-api-progress</artifactId>
-            <version>RELEASE74</version>
+            <version>${netbeans.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
+            <groupId>tw.edu.sju.ee.eea.util</groupId>
+            <artifactId>util-ui</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>tw.edu.sju.ee.eea.jni</groupId>
             <artifactId>jni-modinst</artifactId>
-            <version>1.0</version>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
