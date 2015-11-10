@@ -17,6 +17,10 @@
  */
 package tw.edu.sju.ee.eea.module.fra.file.fr;
 
+import java.util.ArrayList;
+import java.util.List;
+import tw.edu.sju.ee.eea.jni.modinst.NIModinstUtils;
+
 /**
  *
  * @author Leo
@@ -24,6 +28,16 @@ package tw.edu.sju.ee.eea.module.fra.file.fr;
 public class Test {
 
     public static void main(String[] args) {
-        
+        String driver = "niScope";
+        List<NIModinstUtils.Device> devices = NIModinstUtils.list(driver);
+        for (int i = 0; i < devices.size(); i++) {
+            NIModinstUtils.Device device = devices.get(i);
+            System.out.println(device.getDeviceName());
+            System.out.println(device.getDeviceModel());
+            System.out.println(device.getSerialNumber());
+            System.out.println(device.getSocketNumber());
+            System.out.println(device.getSlotNumber());
+            System.out.println(device.getBusNumber());
+        }
     }
 }

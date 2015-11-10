@@ -126,9 +126,9 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>tw.edu.sju.ee.eea.util</groupId>
-            <artifactId>util-ui</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <groupId>tw.edu.sju.ee.eea.utils</groupId>
+            <artifactId>utils-ui</artifactId>
+            <version>1.0.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>tw.edu.sju.ee.eea.jni</groupId>
